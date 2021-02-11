@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ec2a20dc.chunk.css",
+    "main.js": "/static/js/main.fabfdcb9.chunk.js",
+    "main.js.map": "/static/js/main.fabfdcb9.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.207d3d15.js",
+    "runtime-main.js.map": "/static/js/runtime-main.207d3d15.js.map",
+    "static/js/2.362ee77d.chunk.js": "/static/js/2.362ee77d.chunk.js",
+    "static/js/2.362ee77d.chunk.js.map": "/static/js/2.362ee77d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.ec2a20dc.chunk.css.map": "/static/css/main.ec2a20dc.chunk.css.map",
+    "static/js/2.362ee77d.chunk.js.LICENSE.txt": "/static/js/2.362ee77d.chunk.js.LICENSE.txt",
+    "static/media/chocolat.png": "/static/media/chocolat.4f8e8202.png",
+    "static/media/default.png": "/static/media/default.95c7b733.png",
+    "static/media/epinard.png": "/static/media/epinard.b6cee54a.png",
+    "static/media/hamburger.png": "/static/media/hamburger.87c9ecf6.png",
+    "static/media/pizza.png": "/static/media/pizza.e8d7fc4c.png",
+    "static/media/saumon.png": "/static/media/saumon.eb176fd3.png",
+    "static/media/tartine.png": "/static/media/tartine.6c4654a2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.207d3d15.js",
+    "static/js/2.362ee77d.chunk.js",
+    "static/css/main.ec2a20dc.chunk.css",
+    "static/js/main.fabfdcb9.chunk.js"
+  ]
+}
