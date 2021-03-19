@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const Card = ({ details }) => {
     const ingredients = details.ingredients
     .split(',')
@@ -14,7 +13,7 @@ const Card = ({ details }) => {
         try {
             return require(`../img/${chemin}`)
         } catch (err) {
-            return require(`../img/default.png`)
+            return require(`../img/default.jpeg`)
         }
     }
 
