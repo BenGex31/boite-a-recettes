@@ -1,54 +1,63 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react'
 // CSS
 import './App.css'
 import Admin from './components/Admin'
 import Header from './components/Header'
+import recettes from './recettes'
 import Card from './components/Card'
 
-import withFirebase from './hoc/withFirebase'
+//firebse
+import base from './base'
 
-import ColorContext from './components/Color'
+class App extends Component {
+  state = {
+    pseudo: this.props.match.params.pseudo,
+    recettes: {}
+  }
 
-const App = ({ 
-  match,
-  recettes,
-  ajouterRecette,
-  majRecette,
-  supprimerRecette,
-  chargerExemple,
-  test }) => {
-  const cards = Object.keys(recettes)
-    .map(key => <Card key={key} details={recettes[key]}></Card>)
+  componentDidMount(){
+    this.ref = base.syncState(`/${this.state.pseudo}/recettes`, {
+      context: this,
+      state: 'recettes'
+    })
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref)
+  }
+
+  ajouterRecette = recette => {
+    const recettes = { ...this.state.recettes }
+    recettes[`recette-${Date.now()}`] = recette
+    this.setState({ recettes })
+  }
+
+  majRecette = (key, newRecette) => {
+    const recettes = { ...this.state.recettes }
+    recettes[key] = newRecette
+    this.setState({ recettes })
+  }
+
+  chargerExemple = () => this.setState({ recettes })
+
+  render () {
+    const cards = Object.keys(this.state.recettes)
+    .map(key => <Card key={key} details={this.state.recettes[key]}></Card>)
 
     return (
-      <ColorContext>
-          <div className='box'>
-          <Header pseudo={match.params.pseudo}></Header>
-          <div className='cards'>
-            { cards }
-          </div>
-          <Admin
-            pseudo={match.params.pseudo}
-            recettes={recettes}
-            ajouterRecette={ajouterRecette}
-            majRecette={majRecette}
-            supprimerRecette={supprimerRecette}
-            chargerExemple={chargerExemple} />
+      <div className='box'>
+        <Header pseudo={this.state.pseudo}></Header>
+        <div className='cards'>
+          { cards }
         </div>
-      </ColorContext>
+        <Admin
+        recettes={this.state.recettes}
+        ajouterRecette={this.ajouterRecette}
+        majRecette={this.majRecette}
+        chargerExemple={this.chargerExemple} />
+      </div>
     )
+  }
 }
 
-App.propTypes = {
-  match: PropTypes.object.isRequired,
-  recettes: PropTypes.object.isRequired,
-  ajouterRecette: PropTypes.func.isRequired,
-  majRecette: PropTypes.func.isRequired,
-  supprimerRecette: PropTypes.func.isRequired,
-  chargerExemple: PropTypes.func.isRequired,
-}
-
-const WrappedComponent = withFirebase(App)
-
-export default WrappedComponent
+export default App
